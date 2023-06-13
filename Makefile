@@ -216,9 +216,9 @@ composer-validate-deep: ## Validate composer.json and composer.lock files in str
 	$(COMPOSER) validate --strict --check-lock
 .PHONY: composer-validate-deep
 d-i-y: ## install all dependencies.
-	$(COMPOSER) install && $(PHP_CACHE_CLEAR) && $(PHP_CONSOLE) assets:install public && $(YARN) install --force
+	$(COMPOSER) install && $(PHP_CACHE_CLEAR) && $(PHP_CONSOLE) ckeditor:install && $(YARN) install --force
 d-i-n: ## install all dependencies
-	$(COMPOSER) install && $(PHP_CACHE_CLEAR) && $(PHP_CONSOLE) assets:install public && $(NPM) install --force
+	$(COMPOSER) install && $(PHP_CACHE_CLEAR) && $(PHP_CONSOLE) ckeditor:install && $(NPM) install --forces
 
 #---------------------------------------------#
 

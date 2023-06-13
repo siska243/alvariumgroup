@@ -34,6 +34,7 @@ class TypeContrat
     public function __construct()
     {
         $this->offreEmplois = new ArrayCollection();
+        $this->setCreatedAt(new \DateTimeImmutable('now'));
     }
 
     public function getId(): ?int

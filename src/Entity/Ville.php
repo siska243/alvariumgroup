@@ -30,9 +30,13 @@ class Ville
     #[ORM\OneToMany(mappedBy: 'ville', targetEntity: OffreEmploi::class)]
     private Collection $offreEmplois;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->offreEmplois = new ArrayCollection();
+        $this->setCreatedAt(new \DateTimeImmutable('now'));
     }
 
     public function getId(): ?int
@@ -114,6 +118,18 @@ class Ville
                 $offreEmploi->setVille(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

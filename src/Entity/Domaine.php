@@ -19,7 +19,7 @@ class Domaine
     private ?string $title = null;
 
     #[ORM\Column]
-    private ?bool $isActive = null;
+    private ?bool $isActive = false;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -30,6 +30,7 @@ class Domaine
     public function __construct()
     {
         $this->offreEmplois = new ArrayCollection();
+        $this->setCreatedAt(new \DateTimeImmutable('now'));
     }
 
     public function getId(): ?int
