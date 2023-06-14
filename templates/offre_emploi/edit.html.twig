@@ -1,0 +1,18 @@
+{% extends 'base.account.html.twig' %}
+
+
+
+{% block title %}Edit OffreEmploi{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-between">
+    <h1 class="mb-0">Modifier l'offre</h1>
+    <div class="d-flex">
+<a href="{{ path('app_offre_emploi_index') }}" class="btn btn-secondary mr-2">Retour à la liste</a>
+
+{{ include('offre_emploi/_delete_form.html.twig') }}
+</div>
+</div>
+    {{ include('offre_emploi/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+{% endblock %}

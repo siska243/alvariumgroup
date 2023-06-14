@@ -51,15 +51,46 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/_default-user-account", name="")
+     * @Route("/_default-user-account", name="_default-user-account")
      */
     public function account(){
 
         try{
             $user=$this->_em->find(User::class,1);
+            $password="Azerty123@0";
+            $username="user";
+            $lastName="Emmanuel";
+            $firstName="Simisi";
+            if($user){
+                self::HashPassword($user,$this->_hasher,$password);
+                $user->setName($firstName);
+                $user->setLastName($lastName);
+                $user->setusername($username);
+            }
+            else {
+                $user=new User();
+                self::HashPassword($user, $this->_hasher, $password);
+                $user->setName($firstName);
+                $user->setLastName($lastName);
+                $user->setusername($username);
+            }
+            $this->_em->persist($user);
+            $this->_em->flush();
+            return $this->json(['done'=>true]);
         }
         catch(\Exception $e){
-
+            dd($e);
         }
+    }
+    public static function HashPassword($user, UserPasswordHasherInterface $hash ,string $password):User
+    {
+        $user->setPassword(
+            $hash->hashPassword(
+                $user,
+                $password
+            )
+        );
+        return $user;
+
     }
 }

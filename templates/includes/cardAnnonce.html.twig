@@ -1,0 +1,16 @@
+{% for offre in offres %}
+	<div class="card p-5 m-3">
+		<h2>{{offre.title}}</h2>
+		<p>
+
+			{{offre.description | raw}}
+		</p>
+		<p>Crée le
+			{{offre.isPublishAt|date('d/m/Y')}}
+		</p>
+
+		<a href="{{ path('app_home_offre', {'slug': offre.slug}) }}">En savoir plus</a>
+
+	</div>
+
+{% endfor %}

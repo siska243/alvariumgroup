@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\OffreEmploiRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Nullable;
 
 #[ORM\Entity(repositoryClass: OffreEmploiRepository::class)]
 class OffreEmploi
@@ -29,8 +32,6 @@ class OffreEmploi
     #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
     private ?Domaine $domaine = null;
 
-    #[ORM\Column]
-    private array $competences = [];
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $deletedAt = null;
@@ -42,7 +43,7 @@ class OffreEmploi
     private ?\DateTimeImmutable $closedAt = null;
 
     #[ORM\Column]
-    private ?bool $isPublish = null;
+    private ?bool $isPublish = true;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $isPublishAt = null;
@@ -55,6 +56,14 @@ class OffreEmploi
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
+
+    public function __construct()
+    {
+        $this->setIsPublishAt(new \DateTimeImmutable('now'));
+        $this->setClosedAt((new \DateTimeImmutable('now'))->modify('30days'));
+    }
+
+   
 
     public function getId(): ?int
     {
@@ -121,17 +130,6 @@ class OffreEmploi
         return $this;
     }
 
-    public function getCompetences(): array
-    {
-        return $this->competences;
-    }
-
-    public function setCompetences(array $competences): static
-    {
-        $this->competences = $competences;
-
-        return $this;
-    }
 
     public function getDeletedAt(): ?\DateTimeImmutable
     {
