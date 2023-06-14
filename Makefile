@@ -104,6 +104,10 @@ sf-start: ## Start symfony server.
 	$(SYMFONY_SERVER_START)
 .PHONY: sf-start
 
+sf-start-d: ## Start symfony server background.
+	$(SYMFONY_SERVER_START) -d
+.PHONY: sf-start-d
+
 sf-stop: ## Stop symfony server.
 	$(SYMFONY_SERVER_STOP)
 .PHONY: sf-stop
