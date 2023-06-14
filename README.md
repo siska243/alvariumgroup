@@ -102,11 +102,12 @@ make sf-dc
 10. Accéder à l'application dans votre navigateur à l'adresse suivante :
 [https://127.0.0.1:8080](https://127.0.0.1:8080)
 11.  Créer un utilisateur par défaut :
+```bash
 username : user
 password :Azerty123@@
-default user
+```
+## default user
 [https://127.0.0.1:8080/_default-user-account](https://127.0.0.1:8080/_default-user-account)
-
 
 ## Auteurs
 [Emmanuel SIMISI](https://github.com/siska243)
