@@ -9,3 +9,5 @@
 import './styles/app.css';
 import "bootstrap"
 import * as Popper from "@popperjs/core";
+import * as $ from "jquery";
+
