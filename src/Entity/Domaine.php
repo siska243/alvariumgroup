@@ -7,24 +7,40 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DomaineRepository::class)]
+
+/**
+ * @ORM\Entity(repositoryClass=DomaineRepository::class)
+ */
 class Domaine
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+
+    /**
+     * @ORM\Column(type="text")
+     */
     private ?string $title = null;
 
-    #[ORM\Column]
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
     private ?bool $isActive = false;
 
-    #[ORM\Column]
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'domaine', targetEntity: OffreEmploi::class)]
+    /**
+     * @ORM\OneToMany(targetEntity=OffreEmploi::class, mappedBy="domaine")
+     */
     private Collection $offreEmplois;
 
     public function __construct()

@@ -46,6 +46,7 @@ class OffreEmploiController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $offreEmploi->setSlug($this->_slugger->slug($offreEmploi->getTitle()));
+            $offreEmploi->setCreatedBy($this->getUser());
 
             $offreEmploiRepository->save($offreEmploi, true);
 

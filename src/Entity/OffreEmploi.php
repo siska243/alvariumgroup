@@ -9,52 +9,85 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Nullable;
 
-#[ORM\Entity(repositoryClass: OffreEmploiRepository::class)]
+
+/**
+ * @ORM\Entity(repositoryClass=OffreEmploiRepository::class)
+ */
 class OffreEmploi
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * @ORM\Column(type="text")
+     */
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    /**
+     * @ORM\Column(type="text")
+     */
     private ?string $description = null;
 
     #[ORM\Column(nullable: true)]
+    /**
+     * @ORM\Column(type="float",nullable="true")
+     */
     private ?float $salaire = null;
 
-    #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TypeContrat::class, inversedBy="offreEmplois")
+     */
     private ?TypeContrat $typeContrat = null;
 
-    #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
+    /**
+     * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="offreEmplois")
+     */
     private ?Domaine $domaine = null;
 
 
-    #[ORM\Column(nullable: true)]
+
+    /**
+     * @ORM\Column(type="datetime",nullable="true")
+     */
     private ?\DateTimeImmutable $deletedAt = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column]
+    /**
+     * @ORM\Column(type="datetime",nullable="true")
+     */
     private ?\DateTimeImmutable $closedAt = null;
 
-    #[ORM\Column]
+    /**
+     * @ORM\Column(type="boolean")
+     */
     private ?bool $isPublish = true;
 
-    #[ORM\Column(nullable: true)]
+    /**
+     * @ORM\Column(type="datetime",nullable="true")
+     */
     private ?\DateTimeImmutable $isPublishAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="offreEmplois")
+     */
     private ?User $createdBy = null;
 
-    #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
+    /**
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="offreEmplois")
+     */
     private ?Ville $ville = null;
 
-    #[ORM\Column(length: 255)]
+
+    /**
+     * @ORM\Column(type="text")
+     */
     private ?string $slug = null;
 
     public function __construct()
@@ -63,7 +96,7 @@ class OffreEmploi
         $this->setClosedAt((new \DateTimeImmutable('now'))->modify('30days'));
     }
 
-   
+
 
     public function getId(): ?int
     {

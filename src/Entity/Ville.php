@@ -7,30 +7,47 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: VilleRepository::class)]
+
+/**
+ * @ORM\Entity(repositoryClass=VilleRepository::class)
+ */
 class Ville
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private ?string $title = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     */
     private ?string $zip = null;
 
-    #[ORM\Column]
+    /**
+     * @ORM\Column(type="boolean")
+     */
     private ?bool $isActive = null;
 
-    #[ORM\Column]
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'ville', targetEntity: OffreEmploi::class)]
+    /**
+     * @ORM\OneToMany(mappedBy="ville", targetEntity=OffreEmploi::class)
+     */
     private Collection $offreEmplois;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private ?string $slug = null;
 
     public function __construct()
