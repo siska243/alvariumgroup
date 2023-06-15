@@ -105,6 +105,10 @@ make sf-dc
 11.  Créer un utilisateur par défaut :
 
 ## default user
+```bash
+username : demo
+password :Azerty123@0
+```
 [https://127.0.0.1:8000/_default-user-account](https://127.0.0.1:8000/_default-user-account)
 
 12.  Créer un utilisateur :
@@ -113,10 +117,7 @@ make sf-dc
 [https://127.0.0.1:8000/register](https://127.0.0.1:8000/register)
 
 13.  se connecter :
-```bash
-username : demo
-password :Azerty123@0
-```
+
 ## login
 [https://127.0.0.1:8000/login](https://127.0.0.1:8000/login)
 ## Auteurs
