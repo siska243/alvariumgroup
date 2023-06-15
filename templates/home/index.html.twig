@@ -6,11 +6,18 @@
 {% block body %}
 
 	<div class=" container">
-
-		<div class="d-flex flex-wrap">
-			{% include "includes/cardAnnonce.html.twig" with {
+		{% if offres|length > 0 %}
+<div class="d-flex flex-wrap">
+	{% include "includes/cardAnnonce.html.twig" with {
         offres
     } %}
+	{% else %}
+	<div class="d-flex justify-content-center">
+		<div class="alert alert-danger"> Aucune offre disponible </div>
+	</div>
+		{% endif %}
+		
+		
 
 		</div>
 		<div class="navigation d-flex justify-content-center">
