@@ -113,12 +113,11 @@ password :Azerty123@0
 
 12.  Créer un utilisateur :
 
-## default user
 [https://127.0.0.1:8000/register](https://127.0.0.1:8000/register)
 
 13.  se connecter :
 
-## login
 [https://127.0.0.1:8000/login](https://127.0.0.1:8000/login)
+
 ## Auteurs
 [Emmanuel SIMISI](https://github.com/siska243)
