@@ -7,63 +7,96 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Nullable;
 
-#[ORM\Entity(repositoryClass: OffreEmploiRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass=OffreEmploiRepository::class)
+ */
 class OffreEmploi
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * @ORM\Column(type="text")
+     */
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    /**
+     * @ORM\Column(type="text")
+     */
     private ?string $description = null;
 
-    #[ORM\Column(nullable: true)]
+  
+    /**
+     * @ORM\Column(type="float",nullable="true")
+     */
     private ?float $salaire = null;
 
-    #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TypeContrat::class, inversedBy="offreEmplois")
+     */
     private ?TypeContrat $typeContrat = null;
 
-    #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
+    /**
+     * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="offreEmplois")
+     */
     private ?Domaine $domaine = null;
 
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $deletedAt = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+    /**
+     * @ORM\Column(type="datetime",nullable="true")
+     */
+    private ?\DateTime $deletedAt = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $closedAt = null;
+    /**
+     * @ORM\Column(type="datetime",nullable="true")
+     */
+    private ?\DateTime $updatedAt = null;
 
-    #[ORM\Column]
+    /**
+     * @ORM\Column(type="datetime",nullable="true")
+     */
+    private ?\DateTime $closedAt = null;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
     private ?bool $isPublish = true;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $isPublishAt = null;
+    /**
+     * @ORM\Column(type="datetime",nullable="true")
+     */
+    private ?\DateTime $isPublishAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="offreEmplois")
+     */
     private ?User $createdBy = null;
 
-    #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
+    /**
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="offreEmplois")
+     */
     private ?Ville $ville = null;
 
-    #[ORM\Column(length: 255)]
+
+    /**
+     * @ORM\Column(type="text")
+     */
     private ?string $slug = null;
 
     public function __construct()
     {
-        $this->setIsPublishAt(new \DateTimeImmutable('now'));
-        $this->setClosedAt((new \DateTimeImmutable('now'))->modify('30days'));
+        $this->setIsPublishAt(new \Datetime('now'));
+        $this->setClosedAt((new \Datetime('now'))->modify('30days'));
     }
 
-   
+
 
     public function getId(): ?int
     {
@@ -131,36 +164,36 @@ class OffreEmploi
     }
 
 
-    public function getDeletedAt(): ?\DateTimeImmutable
+    public function getDeletedAt(): ?\DateTime
     {
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(?\DateTimeImmutable $deletedAt): static
+    public function setDeletedAt(?\DateTime $deletedAt): static
     {
         $this->deletedAt = $deletedAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(?\DateTime $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getClosedAt(): ?\DateTimeImmutable
+    public function getClosedAt(): ?\DateTime
     {
         return $this->closedAt;
     }
 
-    public function setClosedAt(\DateTimeImmutable $closedAt): static
+    public function setClosedAt(\datetime $closedAt): static
     {
         $this->closedAt = $closedAt;
 
@@ -179,12 +212,12 @@ class OffreEmploi
         return $this;
     }
 
-    public function getIsPublishAt(): ?\DateTimeImmutable
+    public function getIsPublishAt(): ?\DateTime
     {
         return $this->isPublishAt;
     }
 
-    public function setIsPublishAt(?\DateTimeImmutable $isPublishAt): static
+    public function setIsPublishAt(?\DateTime $isPublishAt): static
     {
         $this->isPublishAt = $isPublishAt;
 

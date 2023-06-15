@@ -8,33 +8,48 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TypeContratRepository::class)]
+
+/**
+ * @ORM\Entity(repositoryClass=TypeContratRepository::class)
+ */
 class TypeContrat
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    /**
+     * @ORM\Column(type="text")
+     */
     private ?string $title = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
     private ?string $color = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private ?\DateTime $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'typeContrat', targetEntity: OffreEmploi::class)]
+    /**
+     * @ORM\OneToMany(mappedBy="typeContrat", targetEntity=OffreEmploi::class)
+     */
     private Collection $offreEmplois;
 
     public function __construct()
     {
         $this->offreEmplois = new ArrayCollection();
-        $this->setCreatedAt(new \DateTimeImmutable('now'));
+        $this->setCreatedAt(new \DateTime('now'));
     }
 
     public function __toString()
@@ -82,12 +97,12 @@ class TypeContrat
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTime $createdAt): static
     {
         $this->createdAt = $createdAt;
 
