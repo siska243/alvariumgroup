@@ -1,0 +1,14 @@
+{% extends 'base.account.html.twig' %}
+
+
+{% block title %}New Domaine{% endblock %}
+
+{% block body %}
+
+<div class="d-flex justify-content-between">
+	<h1 class="mb-0">Ajout nouveau domaine</h1>
+<a href="{{ path('app_domaine_index') }}" class="btn btn-secondary">retourn à la liste</a>
+
+</div>
+    {{ include('domaine/_form.html.twig') }}
+{% endblock %}
