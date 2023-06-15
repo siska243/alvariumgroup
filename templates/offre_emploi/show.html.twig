@@ -1,0 +1,58 @@
+{% extends 'base.account.html.twig' %}
+
+{% block title %}OffreEmploi{% endblock %}
+
+{% block body %}
+    <h1>OffreEmploi</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ offre_emploi.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ offre_emploi.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ offre_emploi.description | raw }}</td>
+            </tr>
+            <tr>
+                <th>Salaire</th>
+                <td>{{ offre_emploi.salaire }}</td>
+            </tr>
+            <tr>
+                <th>DeletedAt</th>
+                <td>{{ offre_emploi.deletedAt ? offre_emploi.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ offre_emploi.updatedAt ? offre_emploi.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ClosedAt</th>
+                <td>{{ offre_emploi.closedAt ? offre_emploi.closedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IsPublish</th>
+                <td>{{ offre_emploi.isPublish ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsPublishAt</th>
+                <td>{{ offre_emploi.isPublishAt ? offre_emploi.isPublishAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ offre_emploi.slug }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_offre_emploi_index') }}">back to list</a>
+
+    <a href="{{ path('app_offre_emploi_edit', {'id': offre_emploi.id}) }}">edit</a>
+
+    {{ include('offre_emploi/_delete_form.html.twig') }}
+{% endblock %}

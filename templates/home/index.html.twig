@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="d-flex flex-wrap container">
+		{% include "includes/cardAnnonce.html.twig" with {
+        offres
+    } %}
+
+	</div>
+{% endblock %}

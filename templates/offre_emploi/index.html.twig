@@ -1,0 +1,51 @@
+{% extends 'base.account.html.twig' %}
+
+
+{% block title %}OffreEmploi index
+{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-between mb-5">
+	<h1 class="mb-0">Les offres</h1>
+<a href="{{ path('app_offre_emploi_new') }}" class="btn btn-primary">Nouvelle offre</a>
+</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Salaire</th>
+				<th>UpdatedAt</th>
+				<th>ClosedAt</th>
+				<th>IsPublish</th>
+				<th>IsPublishAt</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for offre_emploi in offre_emplois %}
+				<tr>
+					<td>{{ offre_emploi.id }}</td>
+					<td>{{ offre_emploi.title }}</td>
+					<td>{{ offre_emploi.description | raw }}</td>
+					<td>{{ offre_emploi.salaire }}</td>
+					<td>{{ offre_emploi.updatedAt ? offre_emploi.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ offre_emploi.closedAt ? offre_emploi.closedAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ offre_emploi.isPublish ?  '<span class="badge-success">Oui</span>' : '<span class="badge-danger">Non</span>' }}</td>
+
+
+					<td>{{ offre_emploi.isPublishAt ? offre_emploi.isPublishAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('app_offre_emploi_show', {'id': offre_emploi.id}) }}">show</a>
+						<a href="{{ path('app_offre_emploi_edit', {'id': offre_emploi.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="12">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

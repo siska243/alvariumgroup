@@ -1,0 +1,12 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+body {
+    background-color: #fff;
+    padding: 15px;
+}
+.sidebar{
+    width: 300px;
+}
+
+.justify-content-between{
+    margin-bottom: 24px;
+}

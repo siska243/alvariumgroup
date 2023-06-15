@@ -1,0 +1,16 @@
+{% extends 'base.account.html.twig' %}
+
+
+{% block title %}New OffreEmploi
+{% endblock %}
+
+{% block body %}
+	<div class="d-flex justify-content-between">
+		<h1 class="mb-0">Creation d'une offre</h1>
+		<a href="{{ path('app_offre_emploi_index') }}" class="btn btn-secondary">retourn à la liste</a>
+	</div>
+
+	{{ include('offre_emploi/_form.html.twig') }}
+
+
+{% endblock %}
