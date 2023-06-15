@@ -39,7 +39,7 @@ class TypeContrat
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTime $createdAt = null;
 
     /**
      * @ORM\OneToMany(mappedBy="typeContrat", targetEntity=OffreEmploi::class)
@@ -49,7 +49,7 @@ class TypeContrat
     public function __construct()
     {
         $this->offreEmplois = new ArrayCollection();
-        $this->setCreatedAt(new \DateTimeImmutable('now'));
+        $this->setCreatedAt(new \DateTime('now'));
     }
 
     public function __toString()
@@ -97,12 +97,12 @@ class TypeContrat
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTime $createdAt): static
     {
         $this->createdAt = $createdAt;
 

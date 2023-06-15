@@ -100,19 +100,24 @@ make sf-dc
  make npm
  ```
 10. Accéder à l'application dans votre navigateur à l'adresse suivante :
-[https://127.0.0.1:8080](https://127.0.0.1:8080)
+[https://127.0.0.1:8000](https://127.0.0.1:8000)
 
 11.  Créer un utilisateur par défaut :
 
 ## default user
-[https://127.0.0.1:8080/_default-user-account](https://127.0.0.1:8080/_default-user-account)
+[https://127.0.0.1:8000/_default-user-account](https://127.0.0.1:8000/_default-user-account)
 
-12.  se connecter :
+12.  Créer un utilisateur :
+
+## default user
+[https://127.0.0.1:8000/register](https://127.0.0.1:8000/register)
+
+13.  se connecter :
 ```bash
 username : demo
-password :Azerty123@@
+password :Azerty123@0
 ```
 ## login
-[https://127.0.0.1:8080/login](https://127.0.0.1:8080/login)
+[https://127.0.0.1:8000/login](https://127.0.0.1:8000/login)
 ## Auteurs
 [Emmanuel SIMISI](https://github.com/siska243)

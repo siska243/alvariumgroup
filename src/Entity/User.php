@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @ORM\Table(name="`user`")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -23,13 +24,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id = null;
+    private int $id;
 
 
     /**
      * @ORM\Column(type="string",unique=true,length=180)
      */
-    private ?string $username = null;
+    private string $username;
 
     /**
      * @ORM\Column(type="json")
@@ -46,7 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(mappedBy="createdBy", targetEntity=OffreEmploi::class)
      */
-    private Collection $offreEmplois;
+    private $offreEmplois;
 
     /**
      * @ORM\Column(type="string", length=255)

@@ -18,7 +18,7 @@ class Ville
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id = null;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -38,7 +38,7 @@ class Ville
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTime $createdAt = null;
 
     /**
      * @ORM\OneToMany(mappedBy="ville", targetEntity=OffreEmploi::class)
@@ -53,7 +53,7 @@ class Ville
     public function __construct()
     {
         $this->offreEmplois = new ArrayCollection();
-        $this->setCreatedAt(new \DateTimeImmutable('now'));
+        $this->setCreatedAt(new \DateTime('now'));
     }
 
     public function __toString()
@@ -102,12 +102,12 @@ class Ville
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTime $createdAt): static
     {
         $this->createdAt = $createdAt;
 

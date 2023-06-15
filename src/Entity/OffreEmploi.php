@@ -7,8 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Nullable;
-
 
 /**
  * @ORM\Entity(repositoryClass=OffreEmploiRepository::class)
@@ -32,7 +30,7 @@ class OffreEmploi
      */
     private ?string $description = null;
 
-    #[ORM\Column(nullable: true)]
+  
     /**
      * @ORM\Column(type="float",nullable="true")
      */
@@ -54,15 +52,17 @@ class OffreEmploi
     /**
      * @ORM\Column(type="datetime",nullable="true")
      */
-    private ?\DateTimeImmutable $deletedAt = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?\DateTime $deletedAt = null;
 
     /**
      * @ORM\Column(type="datetime",nullable="true")
      */
-    private ?\DateTimeImmutable $closedAt = null;
+    private ?\DateTime $updatedAt = null;
+
+    /**
+     * @ORM\Column(type="datetime",nullable="true")
+     */
+    private ?\DateTime $closedAt = null;
 
     /**
      * @ORM\Column(type="boolean")
@@ -72,7 +72,7 @@ class OffreEmploi
     /**
      * @ORM\Column(type="datetime",nullable="true")
      */
-    private ?\DateTimeImmutable $isPublishAt = null;
+    private ?\DateTime $isPublishAt = null;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="offreEmplois")
@@ -92,8 +92,8 @@ class OffreEmploi
 
     public function __construct()
     {
-        $this->setIsPublishAt(new \DateTimeImmutable('now'));
-        $this->setClosedAt((new \DateTimeImmutable('now'))->modify('30days'));
+        $this->setIsPublishAt(new \Datetime('now'));
+        $this->setClosedAt((new \Datetime('now'))->modify('30days'));
     }
 
 
@@ -164,36 +164,36 @@ class OffreEmploi
     }
 
 
-    public function getDeletedAt(): ?\DateTimeImmutable
+    public function getDeletedAt(): ?\DateTime
     {
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(?\DateTimeImmutable $deletedAt): static
+    public function setDeletedAt(?\DateTime $deletedAt): static
     {
         $this->deletedAt = $deletedAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(?\DateTime $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getClosedAt(): ?\DateTimeImmutable
+    public function getClosedAt(): ?\DateTime
     {
         return $this->closedAt;
     }
 
-    public function setClosedAt(\DateTimeImmutable $closedAt): static
+    public function setClosedAt(\datetime $closedAt): static
     {
         $this->closedAt = $closedAt;
 
@@ -212,12 +212,12 @@ class OffreEmploi
         return $this;
     }
 
-    public function getIsPublishAt(): ?\DateTimeImmutable
+    public function getIsPublishAt(): ?\DateTime
     {
         return $this->isPublishAt;
     }
 
-    public function setIsPublishAt(?\DateTimeImmutable $isPublishAt): static
+    public function setIsPublishAt(?\DateTime $isPublishAt): static
     {
         $this->isPublishAt = $isPublishAt;
 
